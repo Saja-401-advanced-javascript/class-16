@@ -1,7 +1,7 @@
 'use strict ';
 
 
-const event = require('./events.js')
+const event = require('./events.js');
 
 
 
@@ -14,19 +14,19 @@ const event = require('./events.js')
 
 
 event.on('fail', payload => {
-    log('fail', payload)
-})
+  log('fail', payload);
+});
 
- event.on('success', payload =>{
-    log('success', payload)
- })
+event.on('success', payload =>{
+  log('success', payload);
+});
 
  
 
  
 function log(eventName, payload){
-    const date = new Date();
-    let meesage= `${eventName.toUpperCase()}`
-    console.log({meesage, date, payload});//object literal
+  const date = new Date();
+  let meesage= `${eventName.toUpperCase()}`;
+  console.log({meesage, date, payload});//object literal
     
 }

@@ -6,6 +6,7 @@ const util = require('util');
 let events = require('../modular/events.js');
 require('../modular/logger.js');
 require('../modular/app.js');
+
 let writeFilepromisify = util.promisify(fs.writeFile);
 let readFilepromisify = util.promisify(fs.readFile);
 
@@ -26,13 +27,13 @@ describe(' File System Testing ' , () =>{
         console.log('data in test : ', data);
         expect(data).toBeDefined();
         console.log('data.toString() : ', data.toString());
-        expect(data.toString()).toEqual('welcome to our app');
+        expect(data.toString()).toEqual('hi there');
         return data.toString();
       })
       .then(data => {
         writeFile(file, data);
         console.log('write file in tests',writeFile(file, data));
-        expect(data).toEqual('WELCOME TO OUR APP');
+        expect(data).toEqual('HI THERE');
       })
       .then(data => {
         expect(events.emit('success' , data)).toBeTruthy();
@@ -40,6 +41,6 @@ describe(' File System Testing ' , () =>{
       .then(error => {
         events.emit('error',error);
       });
-  }); // end of Read File 
+  });
 
-}); // end of file tests 
+}); 

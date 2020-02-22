@@ -1,5 +1,5 @@
 'use strict ';
-const event = require('./events.js')
+const event = require('./events.js');
 const util = require('util');
 const fs = require('fs');
 require('./logger.js');
@@ -11,24 +11,24 @@ let readFilepromisify = util.promisify(fs.readFile);
 
 
 readFilepromisify(file)
-.then (data => {
+  .then (data => {
     return data.toString();
-})
-.then (data => {
+  })
+  .then (data => {
     writeFile(file, data);
-})
-.then(data => {
-    event.emit('success', data);;
-})
-.catch(error => {
+  })
+  .then(data => {
+    event.emit('success', data);
+  })
+  .catch(error => {
     event.emit('fail', error);
-})
+  });
 // console.log(readFilepromisify);
 
 
 let writeFilePromisify = util.promisify(fs.writeFile);
 const writeFile = (file, data) => {
-    data = data.toUpperCase();
-    writeFilePromisify(file,data);
-    return data;
-}
+  data = data.toUpperCase();
+  writeFilePromisify(file,data);
+  return data;
+};
